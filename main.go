@@ -10,7 +10,6 @@ import (
 
 	_ "covidapi/docs"
 
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
 
@@ -29,7 +28,6 @@ func main() {
 	e.GET("/GetAllData", handlers.GetAllCases)
 	e.GET("/GetByGeoLocation", handlers.GetDataFromGeoLocation)
 	// e.GET("/swagger/*", echoSwagger.WrapHandler)
-	godotenv.Load()
 	port := os.Getenv("PORT")
 
 	address := fmt.Sprintf("%s:%s", "0.0.0.0", port)
