@@ -270,12 +270,12 @@ curl -i -H 'Accept: application/json' http://localhost:8080/swagger/index.html//
   
 ## Examples 
 ### Home Page
-    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/UI.jpgRe)
+    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/UI.jpgRe?raw=true)
 ### Get State Data
-    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/GetStateData.jpg)
+    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/GetStateData.jpg?raw=true)
 ### Get All Data
-    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/Get%20All%20Data.jpg)
+    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/Get%20All%20Data.jpg?raw=true)
 ### Get By GeoLoaction Data
-    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/Get%20By%20location.jpg)
+    ![](https://github.com/Pankaj-Kadian/CovidApi/blob/master/Images/Get%20By%20location.jpg?raw=true)
 
  
