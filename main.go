@@ -12,7 +12,6 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
-	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 func main() {
@@ -29,7 +28,7 @@ func main() {
 	e.GET("GetStateData", handlers.GetCases)
 	e.GET("/GetAllData", handlers.GetAllCases)
 	e.GET("/GetByGeoLocation", handlers.GetDataFromGeoLocation)
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	// e.GET("/swagger/*", echoSwagger.WrapHandler)
 	godotenv.Load()
 	port := os.Getenv("PORT")
 
