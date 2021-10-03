@@ -270,12 +270,12 @@ curl -i -H 'Accept: application/json' http://localhost:8080/swagger/index.html//
   
 ## Examples 
 ### Home Page
-    ![](/Images/UI.jpg)
+    ![](UI.jpg)
 ### Get State Data
-    ![](/Images/GetStateData.jpg)
+    ![](GetStateData.jpg)
 ### Get All Data
-    ![](/Images/Get%20All%20Data.jpg)
+    ![](Get%20All%20Data.jpg)
 ### Get By GeoLoaction Data
-    ![](/Images/Get%20By%20location.jpg)
+    ![](Get%20By%20location.jpg)
 
  
