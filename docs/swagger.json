@@ -180,7 +180,7 @@
           },
           "summary": "Get a user",
           "tags": [
-            "users"
+            "Api"
           ]
         }
       },
@@ -236,7 +236,7 @@
           },
           "summary": "Get a user",
           "tags": [
-            "users"
+            "Api"
           ]
         }
       },
@@ -299,7 +299,7 @@
           },
           "summary": "Get a user",
           "tags": [
-            "users"
+            "Api"
           ]
         }
       }

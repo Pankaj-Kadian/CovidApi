@@ -4,10 +4,13 @@ import (
 	"covidapi/app/api"
 	"covidapi/app/handlers"
 	"covidapi/mongodb"
+	"fmt"
+	"os"
 	"time"
 
 	_ "covidapi/docs"
 
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
@@ -27,5 +30,9 @@ func main() {
 	e.GET("/GetAllData", handlers.GetAllCases)
 	e.GET("/GetByGeoLocation", handlers.GetDataFromGeoLocation)
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
-	e.Logger.Fatal(e.Start(":8080"))
+	godotenv.Load()
+	port := os.Getenv("PORT")
+
+	address := fmt.Sprintf("%s:%s", "0.0.0.0", port)
+	e.Logger.Fatal(e.Start(address))
 }

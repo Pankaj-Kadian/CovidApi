@@ -135,7 +135,7 @@ paths:
             $ref: '#/definitions/httputil.HTTPError'
       summary: Get a user
       tags:
-      - users
+      - Api
   /GetAllData:
     get:
       consumes:

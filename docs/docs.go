@@ -83,7 +83,7 @@ var doc = `{
           },
           "summary": "Get data by state",
           "tags": [
-            "users"
+            "Api"
           ]
         }
       },
@@ -139,7 +139,7 @@ var doc = `{
           },
           "summary": "Data of all states and UTs of India.",
           "tags": [
-            "users"
+            "Api"
           ]
         }
       },
@@ -202,7 +202,7 @@ var doc = `{
           },
           "summary": "Data of state based on geolocation",
           "tags": [
-            "users"
+            "Api"
           ]
         }
       }
