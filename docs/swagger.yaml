@@ -84,7 +84,7 @@ definitions:
           format: date-time
           example: '2016-08-29T09:12:33.001Z'
   
-host: localhost:8080
+host: https://covid-data-go-api.herokuapp.com/
 info:
   contact:
     email: support@swagger.io
@@ -104,7 +104,7 @@ paths:
       - application/json
       description: get data by stae
       parameters:
-      - description: User ID
+      - description: Enter State
         in: query
         name: state
         required: true
@@ -142,7 +142,7 @@ paths:
       - application/json
       description: get data by stae
       parameters:
-      - description: User ID
+      - description: Enter GeoLocation
         in: query
         name: state
         required: true

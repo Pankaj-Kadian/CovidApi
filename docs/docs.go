@@ -24,7 +24,7 @@ var doc = `{
       "title": "Covid Data Api",
       "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "covid-data-go-api.herokuapp.com/",
     "basePath": "/",
     "paths": {
       "/GetStateData": {
@@ -35,7 +35,7 @@ var doc = `{
           "description": "Accept state as query parameter and return the data of that particular state. To get Data of India Enter India in state.",
           "parameters": [
             {
-              "description": "User ID",
+              "description": "Enter State",
               "in": "query",
               "name": "state",
               "required": true,
@@ -91,7 +91,7 @@ var doc = `{
           "description": "This returns data of all states. Date of India is also returned.",
           "parameters": [
             {
-              "description": "User ID",
+              "description": "Enter GeoLocation",
               "in": "query",
               "name": "state",
               "required": true,
