@@ -3,6 +3,8 @@ package docs
 import (
 	"bytes"
 	"text/template"
+
+	"github.com/swaggo/swag"
 )
 
 var doc = `{
@@ -341,6 +343,6 @@ func (s *s) ReadDoc() string {
 	return tpl.String()
 }
 
-// func init() {
-// 	swag.Register(swag.Name, &s{})
-// }
+func init() {
+	swag.Register(swag.Name, &s{})
+}
