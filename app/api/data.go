@@ -2,13 +2,15 @@ package api
 
 import (
 	"covidapi/config"
+	"covidapi/logs"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
 )
+
+//Coverting the json data from soruce to int variables
 
 func conversion(covid_data interface{}) int {
 	var totalInt int64 = int64(covid_data.(float64))
@@ -17,16 +19,20 @@ func conversion(covid_data interface{}) int {
 	return t
 }
 
+// Function for getting the state from covidindia.org. It returns the structured data in a map[string]string
+
 func GettingData() map[string]config.ResponseData {
 	res, err := http.Get(config.GetConfigurations().Covid_api)
 	if err != nil {
-		log.Fatal(err)
+		logs.MyLogger(err)
 	}
+	// parsing the json
 	body, _ := ioutil.ReadAll(res.Body)
 	defer res.Body.Close()
 	var json_data map[string]interface{}
 	json.Unmarshal([]byte(body), &json_data)
 
+	//structuring the data for mongodb
 	final_data := make(map[string]config.ResponseData)
 	for _, v := range config.GetStateCodes() {
 		d := json_data[v].(map[string]interface{})
@@ -60,6 +66,5 @@ func GettingData() map[string]config.ResponseData {
 		resData.Last_updated = last_updated_date
 		final_data[v] = resData
 	}
-	// fmt.Println(final_data)
 	return final_data
 }

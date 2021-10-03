@@ -3,34 +3,37 @@ package mongodb
 import (
 	"context"
 	"covidapi/config"
-	"fmt"
+	"covidapi/logs"
 	"log"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+//Inserting Data for First Time
 func InsertingData(final_data map[string]config.ResponseData) {
 	collection, err := config.ConnectionMongoDb()
 	if err != nil {
-		log.Fatal("Unable to Insert")
-		return
+		logs.MyLogger(err)
+		log.Panic("Unable to Insert")
 	}
 
 	for _, v := range config.GetStateCodes() {
 		// InsertOne using json
 		_, err := collection.InsertOne(context.Background(), final_data[v])
 		if err != nil {
-			fmt.Print(err)
+			logs.MyLogger(err)
 		}
 
 	}
 }
+
+// Inserting Data after 30 min of refresh
 func InsertingNewData(final_data map[string]config.ResponseData) {
 	collection, err := config.ConnectionMongoDb()
 	if err != nil {
-		log.Fatal("Unable to Insert")
-		return
+		logs.MyLogger(err)
+		log.Panic(err)
 	}
 	for _, v := range config.GetStateCodes() {
 		_, err2 := collection.UpdateOne(context.Background(), bson.M{"state_code": v}, bson.M{"$set": bson.M{
@@ -43,20 +46,23 @@ func InsertingNewData(final_data map[string]config.ResponseData) {
 			"Last_updated":      final_data[v].Last_updated,
 		}})
 		if err2 != nil {
-			fmt.Println(err2)
+			logs.MyLogger(err)
 		}
 	}
 }
 
+// Getting data from mongodb
 func GetData(state_code string) (config.ResponseData, error) {
 	collection, err := config.ConnectionMongoDb()
 	if err != nil {
-		log.Fatal("Unable to Fetch Data")
+		logs.MyLogger(err)
+		log.Panic(err)
 	}
 	var findOne config.ResponseData
 	err = collection.FindOne(context.Background(), bson.M{"state_code": state_code}).Decode(&findOne)
 	if err != nil {
-		log.Fatal("No Record Found")
+		logs.MyLogger(err)
+		log.Fatal()
 	}
 	// TO convert time in IST
 	loc, _ := time.LoadLocation("Asia/Kolkata")
@@ -65,7 +71,6 @@ func GetData(state_code string) (config.ResponseData, error) {
 		local = local.In(loc)
 	}
 	findOne.Last_updated = local
-	// fmt.Println(findOne)
 	return findOne, err
 }
 
@@ -80,7 +85,7 @@ func GetAllData() ([]config.ResponseData, error) {
 	for find_cursor.Next(context.Background()) {
 		err := find_cursor.Decode(&findOne)
 		if err != nil {
-			fmt.Println(err)
+			logs.MyLogger(err)
 		}
 		loc, _ := time.LoadLocation("Asia/Kolkata")
 		local := findOne.Last_updated
@@ -92,7 +97,7 @@ func GetAllData() ([]config.ResponseData, error) {
 
 	}
 	if err != nil {
-		log.Fatal(err)
+		logs.MyLogger(err)
 	}
 	return find, err
 }

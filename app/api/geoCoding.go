@@ -2,12 +2,14 @@ package api
 
 import (
 	"covidapi/config"
+	"covidapi/logs"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
+
+//Strcuture of the geolocation data from api.mapmyindia.com
 
 type Document struct {
 	ResponseCode int                 `json:"responseCode"`
@@ -15,21 +17,20 @@ type Document struct {
 	Version      string              `json:"version"`
 }
 
+// Taking the inputs from the user and fetching the data for those specific coodirnates. It returns the state
 func GetByGeoCoordinates(lat string, lng string) (string, error) {
 	configuration := config.GetConfigurations()
 	url := configuration.Geocoding_api
 	api := configuration.Geocoding_apikey
 	query := fmt.Sprintf("%s%s/rev_geocode?lat=%s&lng=%s&region=IND", url, api, lat, lng)
-	// fmt.Println(query)
 	res, err := http.Get(query)
 	if err != nil {
-		log.Println(err)
+		logs.MyLogger(err)
 	}
 	body, _ := ioutil.ReadAll(res.Body)
 	defer res.Body.Close()
 	var json_data Document
 	json.Unmarshal([]byte(body), &json_data)
-	// fmt.Println(json_data.Results[0]["state"])
 	result := json_data.Results[0]
 	state := result["state"]
 	if state == "Jammu & Kashmir" {

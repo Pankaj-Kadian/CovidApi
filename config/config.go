@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+	"covidapi/logs"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -13,6 +14,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Structure for configuartion from github.config file
 type Configurations struct {
 	Mongodb_user     string `json:"mongodb_user" bson:"mongodb_user"`
 	Mongodb_password string `json:"mongodb_password" bson:"mongodb_password"`
@@ -22,6 +24,7 @@ type Configurations struct {
 	Geocoding_api    string `json:"geocoding_api" bson:"geocoding_api"`
 }
 
+// Structure for configuration for covid data to be stored in mongodb
 type ResponseData struct {
 	// ID                primitive.ObjectID `json:"_id" bson:"_id" `
 	State_code        string    `json:"state_code" bson:"state_code"`
@@ -34,6 +37,7 @@ type ResponseData struct {
 	Last_updated      time.Time `json:"last_updated" bson:"last_updated"`
 }
 
+// States code
 var state_code map[string]string = map[string]string{"Total": "TT",
 	"Andaman and Nicobar": "AN",
 	"Andhra Pradesh":      "AP",
@@ -71,10 +75,12 @@ var state_code map[string]string = map[string]string{"Total": "TT",
 	"Uttarakhand":         "UT",
 	"West Bengal":         "WB"}
 
+// Get State Codes
 func GetStateCodes() map[string]string {
 	return state_code
 }
 
+// Get State Name from State Code
 func StateCodeFromStateName() map[string]string {
 	state_name := make(map[string]string)
 	for k, v := range state_code {
@@ -82,6 +88,8 @@ func StateCodeFromStateName() map[string]string {
 	}
 	return state_name
 }
+
+// Connecting to mongoDb
 func ConnectionMongoDb() (*mongo.Collection, error) {
 	configurations := GetConfigurations()
 	mongodb_user := configurations.Mongodb_user
@@ -93,23 +101,24 @@ func ConnectionMongoDb() (*mongo.Collection, error) {
 	defer cancel()
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
-		log.Println(err)
+		logs.MyLogger(err)
+		log.Panic(err)
 	}
 	db := client.Database("covid")
 	collection := db.Collection("statewise")
 	return collection, nil
 }
 
+// Getting configurations
 func GetConfigurations() Configurations {
-	config, err := http.Get("https://raw.githubusercontent.com/Pankaj-Kadian/CovidDataApi/master/config.json")
-	fmt.Println(err)
+	config, err := http.Get("https://raw.githubusercontent.com/Pankaj-Kadian/CovidApi/master/config.json")
 	if err != nil {
-		log.Fatal(err)
+		logs.MyLogger(err)
+		log.Panic(err)
 	}
 	body, _ := ioutil.ReadAll(config.Body)
 	defer config.Body.Close()
 	var configuration Configurations
 	json.Unmarshal([]byte(body), &configuration)
-	fmt.Println(configuration)
 	return configuration
 }
