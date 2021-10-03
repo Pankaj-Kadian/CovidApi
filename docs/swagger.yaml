@@ -84,7 +84,7 @@ definitions:
           format: date-time
           example: '2016-08-29T09:12:33.001Z'
   
-host: https://covid-data-go-api.herokuapp.com/
+host: https://covid-data-go-api.herokuapp.com
 info:
   contact:
     email: support@swagger.io
