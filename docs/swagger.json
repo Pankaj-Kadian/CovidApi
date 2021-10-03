@@ -111,7 +111,7 @@
         }
       }
     },
-    "host": "covid-data-go-api.herokuapp.com",
+    "host": "localhost:8080",
     "info": {
       "contact": {
         "email": "support@swagger.io",
@@ -133,16 +133,7 @@
           "consumes": [
             "application/json"
           ],
-          "description": "get data by stae",
-          "parameters": [
-            {
-              "description": "Enter State",
-              "in": "query",
-              "name": "state",
-              "required": true,
-              "type": "string"
-            }
-          ],
+          "description": "get data by all states",
           "produces": [
             "application/json"
           ],
@@ -250,14 +241,14 @@
             {
               "in": "query",
               "name": "latitude",
-              "description": "Pass a state name in query",
+              "description": " Pass a latitude in query",
               "required": true,
               "type": "string"
             },
             {
               "in": "query",
               "name": "longitude",
-              "description": "Pass a state name in query",
+              "description": " Pass a Longitude in query",
               "required": true,
               "type": "string"
             }

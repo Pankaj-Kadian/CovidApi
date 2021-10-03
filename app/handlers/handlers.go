@@ -63,7 +63,7 @@ func GetDataFromGeoLocation(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, "Please give coordinates of India")
 	}
-	data, err := mongodb.GetData(state)
+	data, err := mongodb.GetData(config.GetStateCodes()[state])
 	if err != nil {
 		return c.JSON(http.StatusNotFound, "Invaild StateName")
 	}

@@ -84,7 +84,8 @@ definitions:
           format: date-time
           example: '2016-08-29T09:12:33.001Z'
   
-host: https://covid-data-go-api.herokuapp.com
+host: localhost:8080
+
 info:
   contact:
     email: support@swagger.io
@@ -140,13 +141,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: get data by stae
-      parameters:
-      - description: Enter GeoLocation
-        in: query
-        name: state
-        required: true
-        type: string
+      description: get data by all states 
       produces:
       - application/json
       responses:
@@ -182,12 +177,12 @@ paths:
       parameters:
         - in: query
           name: latitude
-          description: Pass a state name in query
+          description: Pass a latitude in query
           required: true
           type: string
         - in: query
           name: longitude
-          description: Pass a state name in query
+          description: Pass a longitude in query
           required: true
           type: string
       produces:

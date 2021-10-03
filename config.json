@@ -1,5 +1,5 @@
 {
-    "Geocoding_apikey" : "6983db03808201222ec1ddaada1a07f4",
+    "Geocoding_apikey" : "f76a0524c0126ea2725bec78353a0365",
 	"Mongodb_user" :  "pankaj",
 	"Mongodb_password": "pankaj420931",
 	"Covid_api" : "https://data.covid19india.org/v4/min/data.min.json",

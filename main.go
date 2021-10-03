@@ -5,7 +5,6 @@ import (
 	"covidapi/app/handlers"
 	"covidapi/mongodb"
 	"fmt"
-	"os"
 	"time"
 
 	_ "covidapi/docs"
@@ -29,8 +28,9 @@ func main() {
 	e.GET("/GetAllData", handlers.GetAllCases)
 	e.GET("/GetByGeoLocation", handlers.GetDataFromGeoLocation)
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
-	port := os.Getenv("PORT")
 
-	address := fmt.Sprintf("%s:%s", "0.0.0.0", port)
+	// port := os.Getenv("PORT")
+
+	address := fmt.Sprintf("%s:%s", "0.0.0.0", "8080")
 	e.Logger.Fatal(e.Start(address))
 }
