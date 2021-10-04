@@ -260,7 +260,7 @@ var doc = `{
           "type": "array",
           "items": 
               type:"object",
-              [
+              required:[
             "state_code",
             "total_cases",
             "total_recovered",
