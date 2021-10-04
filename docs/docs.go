@@ -258,9 +258,54 @@ var doc = `{
         },
         "model.AllState": {
           "type": "array",
-          "schema": {
-            "$ref": "#/definitions/model.OneState"
+          "items": 
+              type:"object",
+              [
+            "state_code",
+            "total_cases",
+            "total_recovered",
+            "total_death",
+            "total_vaccinated1",
+            "total_vaccinated2",
+            "total_tested",
+            "last_updated"
+          ],
+          "properties": {
+            "state_code": {
+              "type": "string",
+              "example": "HR"
+            },
+            "total_cases": {
+              "type": "integer",
+              "example": 123456
+            },
+            "total_recovered": {
+              "type": "integer",
+              "example": 120356
+            },
+            "total_death": {
+              "type": "integer",
+              "example": 3654
+            },
+            "total_vaccinated1": {
+              "type": "integer",
+              "example": 658545
+            },
+            "total_vaccinated2": {
+              "type": "integer",
+              "example": 365244
+            },
+            "total_tested": {
+              "type": "integer",
+              "example": 2356878
+            },
+            "last_updated": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2016-08-29T09:12:33.001Z"
+            }
           }
+        }
     }
 }`
 

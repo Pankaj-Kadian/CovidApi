@@ -4,7 +4,9 @@ import (
 	"time"
 )
 
-type AllStates struct {
+var AllState []allStates
+
+type allStates struct {
 	StateCode string `json:"state_code"`
 
 	TotalCases int64 `json:"total_cases"`
