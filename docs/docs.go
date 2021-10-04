@@ -259,7 +259,7 @@ var doc = `{
         "model.AllState": {
           "type": "array",
           "items": 
-              type:"object",
+              type:"object":
               required:[
             "state_code",
             "total_cases",
