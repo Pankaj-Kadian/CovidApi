@@ -84,7 +84,7 @@ definitions:
           format: date-time
           example: '2016-08-29T09:12:33.001Z'
   
-host: localhost:8080
+host: covid-data-go-api.herokuapp.com
 
 info:
   contact:
@@ -103,7 +103,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: get data by stae
+      description: get data by state
       parameters:
       - description: Enter State
         in: query
@@ -173,7 +173,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: get data by stae
+      description: get data by state
       parameters:
         - in: query
           name: latitude

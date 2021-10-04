@@ -24,7 +24,7 @@ var doc = `{
       "title": "Covid Data Api",
       "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "covid-data-go-api.herokuapp.com",
     "basePath": "/",
     "paths": {
       "/GetStateData": {

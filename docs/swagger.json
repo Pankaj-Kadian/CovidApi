@@ -111,7 +111,7 @@
         }
       }
     },
-    "host": "localhost:8080",
+    "host": "covid-data-go-api.herokuapp.com",
     "info": {
       "contact": {
         "email": "support@swagger.io",
@@ -180,16 +180,7 @@
           "consumes": [
             "application/json"
           ],
-          "description": "get data by stae",
-          "parameters": [
-            {
-              "description": "Enter GeoLocation",
-              "in": "query",
-              "name": "state",
-              "required": true,
-              "type": "string"
-            }
-          ],
+          "description": "get data by state",
           "produces": [
             "application/json"
           ],
