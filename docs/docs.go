@@ -257,7 +257,7 @@ var doc = `{
           }
         },
         "model.AllState": {
-          "type": "object",
+          "type": "array",
           "required": [
             "state_code",
             "total_cases",
